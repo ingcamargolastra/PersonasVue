@@ -2,19 +2,35 @@
   <div class="page-container">
     <md-app md-mode="fixed">
       <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-          <md-icon>menu</md-icon>
-        </md-button>
-        <span class="md-title">Personas</span>
-        <div class="md-toolbar-section-end">
-          <md-button class="md-icon-button">
-            <md-icon>refresh</md-icon>
-          </md-button>
+        <div class="md-toolbar-row">
+          <div class="md-toolbar-section-start">
+            <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+              <md-icon>menu</md-icon>
+            </md-button>
+            <span class="md-title">Personas</span>
+          </div>
+          <div class="md-toolbar-section-end">
+            <md-button class="md-icon-button">
+              <md-icon>refresh</md-icon>
+            </md-button>
 
-          <md-button class="md-icon-button">
-            <md-icon>more_vert</md-icon>
-          </md-button>
+            <md-button class="md-icon-button">
+              <md-icon>more_vert</md-icon>
+            </md-button>
+          </div>
+
+          <vue-fuse 
+          :keys="keys" 
+          :list="bikes" 
+          :defaultAll="false" 
+          :eventName="bikesChanged"
+          class="fuse">
+          </vue-fuse>
         </div>
+        
+
+        
+
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
@@ -37,14 +53,21 @@
 
       <md-app-content>
         <card-persona></card-persona>
+        
+        <md-button class="md-fab md-primary md-fab-bottom-right">
+          <md-icon>add</md-icon>
+        </md-button>
+
       </md-app-content>
+
+      
     </md-app>
   </div>
 </template>
 
 <style lang="scss" scoped>
   .md-app {
-    height: 100%;
+    height: 100vh;
     border: 1px solid rgba(#000, .12);
   }
 
@@ -52,6 +75,14 @@
   .md-drawer {
     width: 230px;
     max-width: calc(100vw - 125px);
+  }
+  .md-fab{
+    float: right;
+  }
+
+  .fuse{
+    width: 100%;
+    margin-left: 5px;
   }
 </style>
 

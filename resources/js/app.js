@@ -11,7 +11,9 @@ window.Vue = require('vue');
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+import VueFuse from 'vue-fuse'
 
+Vue.use(VueFuse)
 Vue.use(VueMaterial)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
